@@ -28,7 +28,7 @@ public class EditorTool : EditorWindow
 
         sampleRate = (int)EditorGUILayout.Slider("Sample Rate", sampleRate, 100, 44100);
 
-        //frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
+        frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
         if (GUILayout.Button("Press me"))
         {
