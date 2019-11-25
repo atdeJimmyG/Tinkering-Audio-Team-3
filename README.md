@@ -23,3 +23,15 @@ of settings should be made available and configurable by a designer.**
 * Be able to notify the user of their actions
 * Tone varies based upon success & failure
 * This tool must be made available & configurable to designers
+
+### Instructions for the Editor Tool
+#### To access the Editor Window
+1. Go to the 'Window' tab in Unity (Top of screen located between 'Component' and 'Help' tabs)
+2. Select 'Editor Tool'
+3. (Optional) Place the 'Editor Tool' window where suited
+
+#### How to use the Editor Tool
+1. Select the button you wish to change the tone of
+2. Change any of the values provided
+3. Click the 'Generate Tone' button
+4. Run the scene and click the button
