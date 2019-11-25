@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GameObject))]
 public class EditorTool : EditorWindow
 {
     private int pos;
@@ -25,12 +24,13 @@ public class EditorTool : EditorWindow
     {
         GUILayout.Label("Custom Editor Tool", EditorStyles.boldLabel);
 
+        nameOfSample = (string)EditorGUILayout.TextField("Name of sample", nameOfSample);
 
         sampleRate = (int)EditorGUILayout.Slider("Sample Rate", sampleRate, 100, 44100);
 
         frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
-        if (GUILayout.Button("Press me"))
+        if (GUILayout.Button("Generate Tone"))
         {
             OutputAudio();
         }
@@ -38,11 +38,14 @@ public class EditorTool : EditorWindow
 
     public void OutputAudio()
     {
-        AudioClip audioClip = ToneGenerate();
-        GameObject audioHolder = Instantiate(new GameObject());
-        AudioSource audioSource = audioHolder.AddComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.Play();
+        foreach (GameObject obj in Selection.gameObjects)
+        {
+            AudioClip audioClip = ToneGenerate();
+            AudioSource audio = obj.GetComponent<AudioSource>();
+            audio.clip = audioClip;
+            audio.Play();
+        }
+        
     }
 
     private AudioClip ToneGenerate()

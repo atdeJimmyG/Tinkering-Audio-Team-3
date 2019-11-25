@@ -5,18 +5,15 @@ using UnityEngine;
 public class UIButtonSound : MonoBehaviour{
 
     public AudioSource sound;
-    public AudioClip hoverSound;
-    public AudioClip clickSound;
 
-
-    public void HoverSound()
+    void Start()
     {
-        sound.PlayOneShot(hoverSound);
+        sound = GetComponent<AudioSource>();
     }
-    public void ClickSound()
+    public void PlaySound()
     {
-        sound.PlayOneShot(clickSound);
+        Debug.Log("Playing sound...");
+        sound.Play();
     }
-
-
+    
 }
