@@ -25,7 +25,7 @@ of settings should be made available and configurable by a designer.**
 * This tool must be made available & configurable to designers
 
 ### Instructions for the Editor Tool
-####To access the Editor Window
+#### To access the Editor Window
 1. Go to the 'Window' tab in Unity (Top of screen located between 'Component' and 'Help' tabs)
 2. Select 'Editor Tool'
 3. (Optional) Place the 'Editor Tool' window where suited
