@@ -5,6 +5,11 @@ using UnityEngine;
 public class UIButtonSound : MonoBehaviour{
 
     /*
+     * author = Thomas O'Leary
+     * GitHub repo = https://github.com/atdeJimmyG/Tinkering-Audio-Team-3
+     * copyright = MIT License Copyright (c) 2019
+     * license = MIT
+     * 
      * This script is used for playing the AudioSource when the button is clicked
      */
 
