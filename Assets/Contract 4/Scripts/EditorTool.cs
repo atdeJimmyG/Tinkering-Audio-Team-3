@@ -26,7 +26,7 @@ public class EditorTool : EditorWindow
         GUILayout.Label("Custom Editor Tool", EditorStyles.boldLabel);
 
 
-        //sampleRate = (int)EditorGUILayout.Slider("Sample Rate", sampleRate, 100, 44100);
+        sampleRate = (int)EditorGUILayout.Slider("Sample Rate", sampleRate, 100, 44100);
 
         //frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
