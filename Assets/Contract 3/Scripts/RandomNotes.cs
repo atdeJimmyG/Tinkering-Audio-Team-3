@@ -46,11 +46,11 @@ public class RandomNotes : MonoBehaviour {
     }*/
 
     IEnumerator delaySound() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(Random.Range(0.5f, 0.5f));
         gain = volume;
 
         frequency = frequencies[thisFreq];
-        thisFreq += 1;
+        thisFreq += (Random.Range(0, 8));
         thisFreq = thisFreq % frequencies.Length;
 
         StartCoroutine(delaySound());
