@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using UnityEditor;
 /*
  * author = Thomas O'Leary
@@ -64,6 +66,10 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         {
             OutputAudio();
         }
+        if (GUILayout.Button("Apply Tone"))
+        {
+
+        }
     }
 
     // DISCLAIMER:
@@ -80,8 +86,9 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
             AudioClip audioClip = ToneGenerate();
             AudioSource audio = obj.GetComponent<AudioSource>();
             audio.clip = audioClip;
-            audio.Play();
             SaveTone(audioClip);
+            audio.Play();
+            
         }
         
     }
@@ -124,6 +131,16 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     void SaveTone(AudioClip audioClip)
     {
         SaveWavUtil.Save(nameOfSample, audioClip);
+    }
+
+    void ApplyTone()
+    {
+        foreach (GameObject obj in Selection.gameObjects)
+        {
+            AudioSource audio = obj.GetComponent<AudioSource>();
+            audio.clip = Path.Combine(Application.dataPath + "/Contract 4/Saved Tones/" + nameOfSample);
+
+        }
     }
 
 }
