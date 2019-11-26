@@ -81,6 +81,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
             AudioSource audio = obj.GetComponent<AudioSource>();
             audio.clip = audioClip;
             audio.Play();
+            SaveTone(audio.clip);
         }
         
     }
@@ -93,7 +94,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     // And returns the new generated tone in audioOutput
     private AudioClip ToneGenerate()
     {
-        AudioClip audioOutput = AudioClip.Create(nameOfSample, (int)(sampleRate * sampleDur), 1, sampleRate, true, onAudioRead, SetPosition);
+        AudioClip audioOutput = AudioClip.Create(nameOfSample, (int)(sampleRate * sampleDur), 1, sampleRate, false, onAudioRead, SetPosition);
 
         return audioOutput;
     }
@@ -122,7 +123,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
 
     void SaveTone(AudioClip audioClip)
     {
-        
+        SaveWavUtil.Save(nameOfSample, audioClip);
     }
 
 }
