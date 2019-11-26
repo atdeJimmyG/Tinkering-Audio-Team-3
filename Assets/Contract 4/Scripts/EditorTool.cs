@@ -138,7 +138,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         foreach (GameObject obj in Selection.gameObjects)
         {
             AudioSource audio = obj.GetComponent<AudioSource>();
-            audio.clip = Path.Combine(Application.dataPath + "/Contract 4/Saved Tones/" + nameOfSample);
+            //audio.clip = Path.Combine(Application.dataPath + "/Contract 4/Saved Tones/" + nameOfSample);
 
         }
     }
