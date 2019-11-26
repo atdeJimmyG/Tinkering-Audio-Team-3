@@ -14,6 +14,7 @@ public class RandomNotes : MonoBehaviour
 
     public float[] frequencies;
     public int thisFreq;
+    public bool pressed = false;
 
     void Start() {
         frequencies = new float[8];
