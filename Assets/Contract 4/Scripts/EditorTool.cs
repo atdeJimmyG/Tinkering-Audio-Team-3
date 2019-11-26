@@ -81,7 +81,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
             AudioSource audio = obj.GetComponent<AudioSource>();
             audio.clip = audioClip;
             audio.Play();
-            SaveTone(audio.clip);
+            SaveTone(audioClip);
         }
         
     }

@@ -536,6 +536,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!83 &281117815
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: knob
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 44100
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &507869347
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,8 +735,6 @@ GameObject:
   - component: {fileID: 631195818}
   - component: {fileID: 631195817}
   - component: {fileID: 631195816}
-  - component: {fileID: 631195820}
-  - component: {fileID: 631195819}
   - component: {fileID: 631195821}
   m_Layer: 5
   m_Name: QuitButton
@@ -827,50 +853,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631195814}
   m_CullTransparentMesh: 0
---- !u!114 &631195819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631195814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 631195820}
-          m_MethodName: PlaySound
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &631195820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631195814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8155cfe37ae29444a3cc97b65ac466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound: {fileID: 631195821}
 --- !u!82 &631195821
 AudioSource:
   m_ObjectHideFlags: 0
@@ -880,8 +862,7 @@ AudioSource:
   m_GameObject: {fileID: 631195814}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: fc8992020ee6fa845ae103e29ae3f3e9,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 1841740695}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -981,8 +962,6 @@ GameObject:
   - component: {fileID: 762404635}
   - component: {fileID: 762404634}
   - component: {fileID: 762404639}
-  - component: {fileID: 762404638}
-  - component: {fileID: 762404637}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1111,50 +1090,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762404632}
   m_CullTransparentMesh: 0
---- !u!114 &762404637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762404632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 762404638}
-          m_MethodName: PlaySound
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &762404638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762404632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8155cfe37ae29444a3cc97b65ac466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound: {fileID: 762404639}
 --- !u!82 &762404639
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1164,8 +1099,7 @@ AudioSource:
   m_GameObject: {fileID: 762404632}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: fc8992020ee6fa845ae103e29ae3f3e9,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 213458192}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1511,7 +1445,6 @@ GameObject:
   - component: {fileID: 849015056}
   - component: {fileID: 849015055}
   - component: {fileID: 849015054}
-  - component: {fileID: 849015059}
   - component: {fileID: 849015057}
   - component: {fileID: 849015058}
   m_Layer: 5
@@ -1654,9 +1587,10 @@ AudioSource:
   m_GameObject: {fileID: 849015052}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 2060503395}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fc8992020ee6fa845ae103e29ae3f3e9,
+    type: 2}
+  m_audioClip: {fileID: 281117815}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1741,19 +1675,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &849015059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849015052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8155cfe37ae29444a3cc97b65ac466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound: {fileID: 849015058}
 --- !u!1 &881859561
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,8 +2968,6 @@ GameObject:
   - component: {fileID: 1806327028}
   - component: {fileID: 1806327027}
   - component: {fileID: 1806327026}
-  - component: {fileID: 1806327031}
-  - component: {fileID: 1806327030}
   - component: {fileID: 1806327029}
   m_Layer: 5
   m_Name: OptionButton
@@ -3187,10 +3106,9 @@ AudioSource:
   m_GameObject: {fileID: 1806327024}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: fc8992020ee6fa845ae103e29ae3f3e9,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 1762638977}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3275,50 +3193,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1806327030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806327024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1806327031}
-          m_MethodName: PlaySound
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &1806327031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806327024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8155cfe37ae29444a3cc97b65ac466d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound: {fileID: 1806327029}
 --- !u!83 &1841740695
 AudioClip:
   m_ObjectHideFlags: 0
@@ -3326,34 +3200,6 @@ AudioClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: quitbuttonsound
-  m_LoadType: 0
-  m_Channels: 1
-  m_Frequency: 44100
-  m_BitsPerSample: 32
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
---- !u!83 &2060503395
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: playy
   m_LoadType: 0
   m_Channels: 1
   m_Frequency: 44100
