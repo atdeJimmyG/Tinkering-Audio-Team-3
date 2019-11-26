@@ -50,7 +50,7 @@ public static class SaveWavUtil {
             filename += ".wav";
         }
 
-        var filepath = Path.Combine(Application.dataPath + "/Contract 4/Saved Tones", filename);
+        var filepath = Path.Combine(Application.dataPath + "/Resources/Sounds/", filename);
 
         // Make sure directory exists if user is saving to sub dir.
         Directory.CreateDirectory(Path.GetDirectoryName(filepath));
