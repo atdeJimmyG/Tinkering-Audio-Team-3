@@ -120,4 +120,9 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         pos = newPos;
     }
 
+    void SaveTone(AudioClip audioClip)
+    {
+        
+    }
+
 }
