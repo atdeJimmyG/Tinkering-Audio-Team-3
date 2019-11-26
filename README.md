@@ -1,4 +1,6 @@
 # Tinkering-Audio-Team-3
+[Link to the GitHub repository](https://github.com/atdeJimmyG/Tinkering-Audio-Team-3)
+
 ## Contract #3 - Melody Generation (Non-Diegetic Audio) - [James Gill](https://github.com/atdeJimmyG)
 **You are tasked with creating a tool which procedurally generates and exports
 a music track for the game. It will be important to research some rules to see
