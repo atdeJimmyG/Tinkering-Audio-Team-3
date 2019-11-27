@@ -140,7 +140,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     void OnAudioRead(float[] samples)
     {
         int counter = 0;
-        float currentFrequency = frequency;
+        float CurrentFrequency = frequency;
 
         InflecCounter++;
 
@@ -149,10 +149,10 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
             // If the inflec toggle is enabled, the frequency transitions from one value to another
             if (inflec)
             {
-                currentFrequency = Mathf.Lerp(frequency, EndingFrequency, (float)InflecCounter / (1 + 10 * SampleDur));
+                CurrentFrequency = Mathf.Lerp(frequency, EndingFrequency, (float)InflecCounter / (1 + 10 * SampleDur));
             }
 
-            samples[counter] = Mathf.Sin(2 * Mathf.PI * currentFrequency * pos / SampleRate);
+            samples[counter] = Mathf.Sin(2 * Mathf.PI * CurrentFrequency * pos / SampleRate);
             pos++;
             counter++;
         }
