@@ -49,8 +49,8 @@ public static class SaveWavUtil {
         if (!filename.ToLower().EndsWith(".wav")) {
             filename += ".wav";
         }
-
-        var filepath = Path.Combine(Application.dataPath + "/Resources/Sounds/", filename);
+        //Changed WAV file save location
+        var filepath = Path.Combine(Application.dataPath + "/Contract 3/SavedWAVs/", filename);
 
         // Make sure directory exists if user is saving to sub dir.
         Directory.CreateDirectory(Path.GetDirectoryName(filepath));
