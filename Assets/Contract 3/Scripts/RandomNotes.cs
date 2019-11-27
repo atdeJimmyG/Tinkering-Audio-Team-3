@@ -22,15 +22,15 @@ public class RandomNotes : MonoBehaviour {
     private double samplingFrequency = 48000.0;
     public float SampleDuration = 0f;
     public AudioSource AudioSource;
-    public AudioClip AudioClip;
+    private AudioClip AudioClip;
     private float counter = 0f;
 
     public float gain;
     public float volume = 0.1f;
 
-    public float[] frequencies;
-    public int ThisFreq;
-    public bool pressed = false;
+    private float[] frequencies;
+    private int ThisFreq;
+    //private bool pressed = false;
 
 
     void Start() {
@@ -75,6 +75,7 @@ public class RandomNotes : MonoBehaviour {
             GenerateClip();
             AudioSource.clip = AudioClip;
             AudioSource.Play();
+            SaveToWav();
             }
         }
         
@@ -99,7 +100,7 @@ public class RandomNotes : MonoBehaviour {
     }
 
     void GenerateClip() {
-        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 1, (int)samplingFrequency, false);
+        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 2, (int)samplingFrequency, false);
     }
 
     public void SaveToWav() {
