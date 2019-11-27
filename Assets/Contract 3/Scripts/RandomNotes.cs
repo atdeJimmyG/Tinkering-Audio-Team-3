@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Contract 3 - Melody Generation (Non-Diegetic Audio)
+
+Link to GitHub repository: https://github.com/atdeJimmyG/Tinkering-Audio-Team-3
+Code and project authored by James Gill under the GPL-3.0 license
+
+This scripts is capable of creating a random order of tones, from the C Major scale
+
+*/
+
 public class RandomNotes : MonoBehaviour {
     public double frequency = 440.0;
     private double increment;
