@@ -50,7 +50,8 @@ public static class SaveUtil {
             filename += ".wav";
         }
 
-        var filepath = Path.Combine(Application.dataPath + "/Resources/Sounds/", filename); // Changed the filepath to where the Wav file is saved
+        // Changed the filepath to where the Wav file is saved
+        var filepath = Path.Combine(Application.dataPath + "/Resources/Sounds/", filename);
 
         // Make sure directory exists if user is saving to sub dir.
         Directory.CreateDirectory(Path.GetDirectoryName(filepath));
