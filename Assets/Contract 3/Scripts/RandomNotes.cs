@@ -23,6 +23,7 @@ public class RandomNotes : MonoBehaviour {
     public float SampleDuration = 0f;
     public AudioSource AudioSource;
     public AudioClip AudioClip;
+    private float counter = 0f;
 
     public float gain;
     public float volume = 0.1f;
@@ -44,43 +45,41 @@ public class RandomNotes : MonoBehaviour {
         frequencies[6] = 493.9f;
         frequencies[7] = 523.3f;
 
-        //starting the delaySound Coroutine
         StartCoroutine(DelaySound());
     }
-    // Function Used for debugging
-    /*void Update() {
 
-
+   /*void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            gain = volume;
-            frequency = frequencies[thisFreq];
-            thisFreq += 1;
-            thisFreq = thisFreq % frequencies.Length;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space)) {
-        gain = 0;
+            //starting the delaySound Coroutine
+            
         }
     }*/
 
     //IEnumerator used for waiting time
     IEnumerator DelaySound() {
-        // Waiting a random range for the duration of note playing
-        yield return new WaitForSeconds(Random.Range(0.5f, 0.5f));
-        gain = volume;
+        while(counter <= SampleDuration) {
+            // Waiting a random range for the duration of note playing
+            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
 
-        frequency = frequencies[ThisFreq];
-        // Plays frequencies randomly between length of frequencies
-        ThisFreq += (Random.Range(0, frequencies.Length));
-        //Making sure no end, and loops frequencies
-        ThisFreq %= frequencies.Length;
+
+            frequency = frequencies[ThisFreq];
+            // Plays frequencies randomly between length of frequencies
+            ThisFreq += (Random.Range(0, frequencies.Length));
+            //Making sure no end, and loops frequencies
+            ThisFreq %= frequencies.Length;
+            counter++;
+        }
+
+
+        
 
         // Looping the Coroutine
-        StartCoroutine(DelaySound());
+        //StartCoroutine(DelaySound());
     }
         
     //Removing "unused" function will cause no audio to be played
     private void OnAudioFilterRead(float[] data, int channels) {
+        gain = volume;
         increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
         // Looping around the data array 
         for(int i = 0; i < data.Length; i += channels) {
@@ -100,9 +99,9 @@ public class RandomNotes : MonoBehaviour {
 
     }
 
-    public void SaveToWav() {
+    /*public void SaveToWav() {
         SaveWavUtil.Save("Example", AudioClip clip, bool trim = false);
-    }
+    }*/
 
     
 }
