@@ -30,6 +30,7 @@ public class RandomNotes : MonoBehaviour {
 
 
     void Start() {
+        //Setting array to all frequencies in C Major Scale
         frequencies = new float[8];
         frequencies[0] = 261.6f;
         frequencies[1] = 293.7f;
@@ -40,9 +41,10 @@ public class RandomNotes : MonoBehaviour {
         frequencies[6] = 493.9f;
         frequencies[7] = 523.3f;
 
+        //starting the delaySound Coroutine
         StartCoroutine(delaySound());
     }
-
+    // Function Used for debugging
     /*void Update() {
 
 
@@ -58,29 +60,33 @@ public class RandomNotes : MonoBehaviour {
         }
     }*/
 
+    //IEnumerator used for waiting time
     IEnumerator delaySound() {
+        // Waiting a random range for the duration of note playing
         yield return new WaitForSeconds(Random.Range(0.5f, 0.5f));
         gain = volume;
 
         frequency = frequencies[thisFreq];
+        // Plays frequencies randomly between length of frequencies
         thisFreq += (Random.Range(0, 8));
+        //Making sure no end, and loops frequencies
         thisFreq = thisFreq % frequencies.Length;
 
+        // Looping the Coroutine
         StartCoroutine(delaySound());
     }
         
-
+    //Removing "unused" function will cause no audio to be played
     private void OnAudioFilterRead(float[] data, int channels) {
         increment = frequency * 2.0 * Mathf.PI / sampling_frequency;
-
+        // Looping around the data array 
         for(int i = 0; i < data.Length; i += channels) {
             phase += increment;
             data[i] = (float)(gain * Mathf.Sin((float)phase));
-
+            // Plays in both speaker channels
             if(channels == 2) {
                 data[i + 1] = data[i];
             }
-
             if(phase > (Mathf.PI * 2)) {
                 phase = 0.0;
             }
