@@ -168,7 +168,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     // Function used to save the tone as a .wav file
     void SaveTone()
     {
-        SaveWavUtil.Save(nameOfSample, audioOutput);
+        SaveUtil.Save(nameOfSample, audioOutput);
     }
 
 
