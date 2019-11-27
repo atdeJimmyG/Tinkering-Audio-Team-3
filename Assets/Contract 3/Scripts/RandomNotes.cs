@@ -45,10 +45,13 @@ public class RandomNotes : MonoBehaviour {
         frequencies[6] = 493.9f;
         frequencies[7] = 523.3f;
 
+        AudioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(DelaySound());
-    }
 
-   /*void Update() {
+        
+    }
+    // used for debugging
+    /*void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             //starting the delaySound Coroutine
             
@@ -57,10 +60,9 @@ public class RandomNotes : MonoBehaviour {
 
     //IEnumerator used for waiting time
     IEnumerator DelaySound() {
-        while(counter <= SampleDuration) {
+        while (counter <= SampleDuration) {
             // Waiting a random range for the duration of note playing
             yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
-
 
             frequency = frequencies[ThisFreq];
             // Plays frequencies randomly between length of frequencies
@@ -68,17 +70,18 @@ public class RandomNotes : MonoBehaviour {
             //Making sure no end, and loops frequencies
             ThisFreq %= frequencies.Length;
             counter++;
+            
+            if (counter == SampleDuration) {
+            GenerateClip();
+            AudioSource.clip = AudioClip;
+            AudioSource.Play();
+            }
         }
-
-
         
-
-        // Looping the Coroutine
-        //StartCoroutine(DelaySound());
     }
         
     //Removing "unused" function will cause no audio to be played
-    private void OnAudioFilterRead(float[] data, int channels) {
+    public void OnAudioFilterRead(float[] data, int channels) {
         gain = volume;
         increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
         // Looping around the data array 
@@ -96,12 +99,12 @@ public class RandomNotes : MonoBehaviour {
     }
 
     void GenerateClip() {
-
+        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 1, (int)samplingFrequency, false);
     }
 
-    /*public void SaveToWav() {
-        SaveWavUtil.Save("Example", AudioClip clip, bool trim = false);
-    }*/
+    public void SaveToWav() {
+        SaveWavUtil.Save("Example", AudioClip);
+    }
 
     
 }
