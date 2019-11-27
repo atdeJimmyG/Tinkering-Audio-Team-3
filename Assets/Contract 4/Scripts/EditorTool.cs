@@ -130,14 +130,14 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         // This counter is used for the inflection frequency loop
         InflecCounter = 0;
 
-        AudioOutput = AudioClip.Create(NameOfSample, (int)(SampleRate * SampleDur), 1, SampleRate, false, onAudioRead, SetPosition);
+        AudioOutput = AudioClip.Create(NameOfSample, (int)(SampleRate * SampleDur), 1, SampleRate, false, OnAudioRead, SetPosition);
         return AudioOutput;
     }
 
 
 
     // Is called within ToneGenerate() AudioClip.Create as the pcmreadercallback parameter
-    void onAudioRead(float[] samples)
+    void OnAudioRead(float[] samples)
     {
         int counter = 0;
         float currentFrequency = frequency;
