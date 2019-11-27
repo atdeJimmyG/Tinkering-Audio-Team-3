@@ -7,9 +7,9 @@ using UnityEditor.Events;
 /*
  * author = Thomas O'Leary
  * GitHub repo = https://github.com/atdeJimmyG/Tinkering-Audio-Team-3
- * copyright = MIT License Copyright (c) 2019
- * license = MIT
- * 
+ * license = GNU GPL 3.0
+ * copyright = Copyright (c) 2019 <James, Gill>
+ * Full license agreement can be found in the LICENSE file or at <https://www.gnu.org/licenses/gpl-3.0.html>
  * 
  * This script is for the customer Editor Tool made for the 
  * designers so that they can edit the sounds that are outputted from the UI.
