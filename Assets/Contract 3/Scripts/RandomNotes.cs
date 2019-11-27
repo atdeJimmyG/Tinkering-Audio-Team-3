@@ -19,13 +19,13 @@ public class RandomNotes : MonoBehaviour {
     public double frequency = 440.0;
     private double increment;
     private double phase;
-    private double sampling_frequency = 48000.0;
+    private double samplingFrequency = 48000.0;
 
     public float gain;
     public float volume = 0.1f;
 
     public float[] frequencies;
-    public int thisFreq;
+    public int ThisFreq;
     public bool pressed = false;
 
 
@@ -42,7 +42,7 @@ public class RandomNotes : MonoBehaviour {
         frequencies[7] = 523.3f;
 
         //starting the delaySound Coroutine
-        StartCoroutine(delaySound());
+        StartCoroutine(DelaySound());
     }
     // Function Used for debugging
     /*void Update() {
@@ -61,24 +61,24 @@ public class RandomNotes : MonoBehaviour {
     }*/
 
     //IEnumerator used for waiting time
-    IEnumerator delaySound() {
+    IEnumerator DelaySound() {
         // Waiting a random range for the duration of note playing
         yield return new WaitForSeconds(Random.Range(0.5f, 0.5f));
         gain = volume;
 
-        frequency = frequencies[thisFreq];
+        frequency = frequencies[ThisFreq];
         // Plays frequencies randomly between length of frequencies
-        thisFreq += (Random.Range(0, frequencies.Length));
+        ThisFreq += (Random.Range(0, frequencies.Length));
         //Making sure no end, and loops frequencies
-        thisFreq = thisFreq % frequencies.Length;
+        ThisFreq %= frequencies.Length;
 
         // Looping the Coroutine
-        StartCoroutine(delaySound());
+        StartCoroutine(DelaySound());
     }
         
     //Removing "unused" function will cause no audio to be played
     private void OnAudioFilterRead(float[] data, int channels) {
-        increment = frequency * 2.0 * Mathf.PI / sampling_frequency;
+        increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
         // Looping around the data array 
         for(int i = 0; i < data.Length; i += channels) {
             phase += increment;
