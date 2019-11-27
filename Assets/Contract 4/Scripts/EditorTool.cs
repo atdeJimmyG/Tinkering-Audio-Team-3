@@ -20,24 +20,24 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     // General variable setup to use for generating tone
     private int pos;
 
-    public int sampleRate = 44100;
+    public int SampleRate = 44100;
 
     public int frequency = 440;
-    public int endingFrequency;
+    public int EndingFrequency;
 
-    public float sampleDur = 1f;
+    public float SampleDur = 1f;
 
-    public string nameOfSample;
+    public string NameOfSample;
 
     public bool inflec = false;
-    public int inflecCounter;
+    public int InflecCounter;
 
     public AudioSource audio;
-    public AudioClip audioOutput;
-    public GameObject selectedObj = null;
+    public AudioClip AudioOutput;
+    public GameObject SelectedObj = null;
 
-    public Button selectedButton;
-    public AudioSource buttonAudio;
+    public Button SelectedButton;
+    public AudioSource ButtonAudio;
 
     [MenuItem("Window/Editor Tool")]// The tool will be found underneath the WINDOW tab, labelled Editor Tool
     public static void ShowWindow()
@@ -51,9 +51,9 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         GUILayout.Label("Custom Editor Tool", EditorStyles.boldLabel);
 
         // Sets all editable areas of the editor tool
-        nameOfSample = (string)EditorGUILayout.TextField("Name of sample", nameOfSample);
-        sampleDur = EditorGUILayout.FloatField("Duration", sampleDur);
-        sampleRate = (int)EditorGUILayout.Slider("Sample Rate", sampleRate, 100, 44100);
+        NameOfSample = (string)EditorGUILayout.TextField("Name of sample", NameOfSample);
+        SampleDur = EditorGUILayout.FloatField("Duration", SampleDur);
+        SampleRate = (int)EditorGUILayout.Slider("Sample Rate", SampleRate, 100, 44100);
         frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
         // Inflec is a toggle boolean. When toggled, a slider will appear on the window
@@ -61,7 +61,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
 
         if (inflec == true)
         {
-            endingFrequency = (int)EditorGUILayout.Slider("Ending Frequency", endingFrequency, 0, 1000);
+            EndingFrequency = (int)EditorGUILayout.Slider("Ending Frequency", EndingFrequency, 0, 1000);
         }
 
         GUILayout.BeginHorizontal();
@@ -92,12 +92,12 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     // Creates a new GameObject called "Generated Sound" and gives it an AudioSource component
     public void OutputAudio()
     {
-        if (selectedObj == null)
+        if (SelectedObj == null)
         {
-            selectedObj = new GameObject("Generated Sound");
-            audio = selectedObj.AddComponent<AudioSource>();
+            SelectedObj = new GameObject("Generated Sound");
+            audio = SelectedObj.AddComponent<AudioSource>();
         }
-        audio.clip = audioOutput;
+        audio.clip = AudioOutput;
         audio.Play();
 
     }
@@ -109,14 +109,14 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         SaveTone();
         foreach (GameObject obj in Selection.gameObjects)
         {
-            selectedButton = obj.GetComponent<Button>();
+            SelectedButton = obj.GetComponent<Button>();
 
-            if (selectedButton != null)
+            if (SelectedButton != null)
             {
-                buttonAudio = obj.GetComponent<AudioSource>();
+                ButtonAudio = obj.GetComponent<AudioSource>();
 
-                buttonAudio.clip = Resources.Load<AudioClip>("Sounds/" + nameOfSample);
-                UnityEventTools.AddPersistentListener(selectedButton.onClick, buttonAudio.Play);
+                ButtonAudio.clip = Resources.Load<AudioClip>("Sounds/" + NameOfSample);
+                UnityEventTools.AddPersistentListener(SelectedButton.onClick, ButtonAudio.Play);
             }
         }
 
@@ -128,10 +128,10 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     private AudioClip ToneGenerate()
     {
         // This counter is used for the inflection frequency loop
-        inflecCounter = 0;
+        InflecCounter = 0;
 
-        audioOutput = AudioClip.Create(nameOfSample, (int)(sampleRate * sampleDur), 1, sampleRate, false, onAudioRead, SetPosition);
-        return audioOutput;
+        AudioOutput = AudioClip.Create(NameOfSample, (int)(SampleRate * SampleDur), 1, SampleRate, false, onAudioRead, SetPosition);
+        return AudioOutput;
     }
 
 
@@ -142,17 +142,17 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         int counter = 0;
         float currentFrequency = frequency;
 
-        inflecCounter++;
+        InflecCounter++;
 
         while (counter < samples.Length)
         {
             // If the inflec toggle is enabled, the frequency transitions from one value to another
             if (inflec)
             {
-                currentFrequency = Mathf.Lerp(frequency, endingFrequency, (float)inflecCounter / (1 + 10 * sampleDur));
+                currentFrequency = Mathf.Lerp(frequency, EndingFrequency, (float)InflecCounter / (1 + 10 * SampleDur));
             }
 
-            samples[counter] = Mathf.Sin(2 * Mathf.PI * currentFrequency * pos / sampleRate);
+            samples[counter] = Mathf.Sin(2 * Mathf.PI * currentFrequency * pos / SampleRate);
             pos++;
             counter++;
         }
@@ -168,7 +168,7 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     // Function used to save the tone as a .wav file
     void SaveTone()
     {
-        SaveUtil.Save(nameOfSample, audioOutput);
+        SaveUtil.Save(NameOfSample, AudioOutput);
     }
 
 
