@@ -20,6 +20,9 @@ public class RandomNotes : MonoBehaviour {
     private double increment;
     private double phase;
     private double samplingFrequency = 48000.0;
+    public float SampleDuration = 0f;
+    public AudioSource AudioSource;
+    public AudioClip AudioClip;
 
     public float gain;
     public float volume = 0.1f;
@@ -91,6 +94,14 @@ public class RandomNotes : MonoBehaviour {
                 phase = 0.0;
             }
         }
+    }
+
+    void GenerateClip() {
+
+    }
+
+    public void SaveToWav() {
+        SaveWavUtil.Save("Example", AudioClip clip, bool trim = false);
     }
 
     
