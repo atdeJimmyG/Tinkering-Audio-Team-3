@@ -8,6 +8,9 @@ Contract 3 - Melody Generation (Non-Diegetic Audio)
 Link to GitHub repository: https://github.com/atdeJimmyG/Tinkering-Audio-Team-3
 Code and project authored by James Gill under the GPL-3.0 license
 
+Copyright (C) <2019>  <James Gill>
+The full licence is found at https://www.gnu.org/licenses.
+
 This scripts is capable of creating a random order of tones, from the C Major scale
 
 */
