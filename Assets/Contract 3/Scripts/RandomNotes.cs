@@ -68,7 +68,7 @@ public class RandomNotes : MonoBehaviour {
 
         frequency = frequencies[thisFreq];
         // Plays frequencies randomly between length of frequencies
-        thisFreq += (Random.Range(0, 8));
+        thisFreq += (Random.Range(0, frequencies.Length));
         //Making sure no end, and loops frequencies
         thisFreq = thisFreq % frequencies.Length;
 
