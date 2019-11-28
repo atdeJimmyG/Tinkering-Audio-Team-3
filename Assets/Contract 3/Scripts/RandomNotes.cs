@@ -23,7 +23,10 @@ public class RandomNotes : MonoBehaviour {
     public float SampleDuration = 0f;
     public AudioSource AudioSource;
     private AudioClip AudioClip;
-    private float counter = 0f;
+    private int counter = 0;
+    private int FileNameCounter = 0;
+    public int position = 0;
+
 
     public float gain;
     public float volume = 0.1f;
@@ -73,8 +76,6 @@ public class RandomNotes : MonoBehaviour {
             
             if (counter == SampleDuration) {
             GenerateClip();
-            AudioSource.clip = AudioClip;
-            AudioSource.Play();
             SaveToWav();
             }
         }
@@ -100,7 +101,29 @@ public class RandomNotes : MonoBehaviour {
     }
 
     void GenerateClip() {
-        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 2, (int)samplingFrequency, false);
+        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 2, (int)samplingFrequency, false, OnAudioRead, OnAudioSetPosition);
+    }
+    void OnAudioRead(float[] data)
+    {
+        gain = volume;
+        increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
+        // Looping around the data array 
+        for (int i = 0; i < data.Length; i += 2)
+        {
+            phase += increment;
+            data[i] = (float)(gain * Mathf.Sin((float)phase));
+            // Plays in both speaker channels
+             data[i + 1] = data[i];
+            if (phase > (Mathf.PI * 2))
+            {
+                phase = 0.0;
+            }
+        }
+    }
+
+    void OnAudioSetPosition(int newPosition)
+    {
+        position = newPosition;
     }
 
     public void SaveToWav() {
