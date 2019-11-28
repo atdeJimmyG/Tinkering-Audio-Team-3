@@ -13,6 +13,7 @@ The full licence is found at https://www.gnu.org/licenses.
 
 This scripts is capable of creating a random order of tones, from the C Major scale
 
+Code editited from https://www.youtube.com/watch?v=GqHFGMy_51c
 */
 
 public class RandomNotes : MonoBehaviour {
