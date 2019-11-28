@@ -212,14 +212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequency: 440
-  SampleDuration: 10
+  SampleDuration: 3
   AudioSource: {fileID: 0}
-  AudioClip: {fileID: 0}
+  position: 0
   gain: 0
   volume: 0.1
-  frequencies: []
-  ThisFreq: 0
-  pressed: 0
 --- !u!82 &1194921197
 AudioSource:
   m_ObjectHideFlags: 0

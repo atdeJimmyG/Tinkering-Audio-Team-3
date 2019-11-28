@@ -73,11 +73,13 @@ public class RandomNotes : MonoBehaviour {
             //Making sure no end, and loops frequencies
             ThisFreq %= frequencies.Length;
             counter++;
-            
-            if (counter == SampleDuration) {
+
+            FileNameCounter++;
             GenerateClip();
             SaveToWav();
-            }
+/*            if (counter == SampleDuration) {
+
+            }*/
         }
         
     }
@@ -127,7 +129,11 @@ public class RandomNotes : MonoBehaviour {
     }
 
     public void SaveToWav() {
-        SaveWavUtil.Save("Example", AudioClip);
+        if(FileNameCounter <= counter) {
+            string str = "Example" + FileNameCounter; 
+            SaveWavUtil.Save(str, AudioClip);
+        }
+        
     }
 
     
