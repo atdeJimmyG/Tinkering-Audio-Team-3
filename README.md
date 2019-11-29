@@ -15,6 +15,11 @@ retro.**
 * Use both tones and samples
 * Export the music track 
 
+### Instructions:
+1. Make sure contract 3 scene is selected
+2. In the inspector, choose how long you want your music track to be (Using Sample Duration)
+3. Run the scene 
+4. Tones will be generated in the savedWAVs Folder (I wasn't able to to save the whole track as one .WAV, so each tone will need to be merged in another program)
 
 ## Contract #4 - User Interface Audio (Non-Diegetic Audio) - [Thomas O'Leary](https://github.com/thomasoleary)
 **You need to develop a tool to generate audio for the user interface. These
