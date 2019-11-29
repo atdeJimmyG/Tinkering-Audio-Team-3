@@ -84,7 +84,7 @@ public class RandomNotes : MonoBehaviour {
         
     }
 
-    
+    //This function allows player to hear sounds, without it, no audio will play
     public void OnAudioFilterRead(float[] data, int channels) {
         gain = volume;
         increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
@@ -102,10 +102,13 @@ public class RandomNotes : MonoBehaviour {
         }
     }
 
+    // generating a audioClip between random range 
     void GenerateClip() {
         float randomNoteLen = Random.Range(0.2f, 0.5f); 
         AudioClip = AudioClip.Create("tone", (int)(samplingFrequency *  randomNoteLen), 2, (int)samplingFrequency, false, OnAudioRead, OnAudioSetPosition);
     }
+
+    //function has been made to work with saving functions 
     void OnAudioRead(float[] data)
     {
         gain = volume;
