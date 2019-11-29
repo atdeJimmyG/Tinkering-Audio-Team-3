@@ -17,7 +17,7 @@ Code editited from https://www.youtube.com/watch?v=GqHFGMy_51c
 */
 
 public class RandomNotes : MonoBehaviour {
-    public double frequency = 440.0;
+    private double frequency = 440.0;
     private double increment;
     private double phase;
     private double samplingFrequency = 48000.0;
@@ -29,8 +29,8 @@ public class RandomNotes : MonoBehaviour {
     public int position = 0;
 
 
-    public float gain;
-    public float volume = 0.1f;
+    private float gain;
+    private float volume = 0.1f;
 
     private float[] frequencies;
     private int ThisFreq;
@@ -64,6 +64,7 @@ public class RandomNotes : MonoBehaviour {
 
     //IEnumerator used for waiting time
     IEnumerator DelaySound() {
+        float SampleDurationLength = SampleDuration;
         while (counter <= SampleDuration) {
             // Waiting a random range for the duration of note playing
             yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
@@ -78,9 +79,7 @@ public class RandomNotes : MonoBehaviour {
             FileNameCounter++;
             GenerateClip();
             SaveToWav();
-/*            if (counter == SampleDuration) {
 
-            }*/
         }
         
     }
