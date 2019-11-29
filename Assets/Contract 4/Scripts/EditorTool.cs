@@ -8,11 +8,11 @@ using UnityEditor.Events;
  * author = Thomas O'Leary
  * GitHub repo = https://github.com/atdeJimmyG/Tinkering-Audio-Team-3
  * license = GNU GPL 3.0
- * copyright = Copyright (c) 2019 <James, Gill>
+ * copyright = Copyright (c) 2019 <James Gill, Thomas O'Leary>
  * Full license agreement can be found in the LICENSE file or at <https://www.gnu.org/licenses/gpl-3.0.html>
  * 
- * This script is for the customer Editor Tool made for the 
- * designers so that they can edit the sounds that are outputted from the UI.
+ * This script is for the custom Editor Tool made for the 
+ * designers so that they can create sounds that are outputted from the UI.
  */
 
 public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so that it can be treated as a window
@@ -29,8 +29,8 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
 
     public string NameOfSample;
 
-    public bool inflec = false;
-    public int InflecCounter;
+    public bool VaryFrequency = false;
+    public int VaryFrequencyCount;
 
     public AudioSource audio;
     public AudioClip AudioOutput;
@@ -55,22 +55,26 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         SampleDur = EditorGUILayout.FloatField("Duration", SampleDur);
         frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
-        // Inflec is a toggle boolean. When toggled, a slider will appear on the window
-        inflec = EditorGUILayout.Toggle("Vary in Frequency", inflec);
+        // VaryFrequency is a toggle boolean. When toggled, a slider will appear on the window
+        VaryFrequency = EditorGUILayout.Toggle("Vary in Frequency", VaryFrequency);
 
-        if (inflec == true)
+        if (VaryFrequency == true)
         {
             EndingFrequency = (int)EditorGUILayout.Slider("Ending Frequency", EndingFrequency, 0, 1000);
         }
 
-        GUILayout.BeginHorizontal();
+        GUILayout.BeginHorizontal(); // Puts the buttons together horizontally
 
-        // Creates a button on the GUI labelled "Generate Tone" that executes OutputAudio()
+        // Creates a button on the tool labelled "Generate Tone" that executes 
+        // Both ToneGenerate() & OutputAudio()
         if (GUILayout.Button("Generate Tone"))
         {
             ToneGenerate();
             OutputAudio();
         }
+
+        // Creates a button on the tool labelled "Save Generated Tone" that executes
+        // SaveTone()
         if (GUILayout.Button("Save Generated Tone"))
         {
             SaveTone();
@@ -78,13 +82,15 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
 
         GUILayout.EndHorizontal();
 
+        // Creates a button on the tool labelled "Apply tone to GameObject"
+        // Executes ToneGenerate() & ApplyToButton()
         if (GUILayout.Button("Apply Tone to GameObject"))
         {
-            ToneGenerate();
             ApplyToButton();
             
         }
     }
+
 
     // Created a new function called OutputAudio()
     // Function sees if there is a selected GameObject, if not
@@ -101,10 +107,12 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
 
     }
 
-    // This function saves the tone within the editor and applies it
+
+    // This function generates and saves a tone within the editor and applies it
     // to every button that is selected in the Scene
     private void ApplyToButton()
     {
+        ToneGenerate();
         SaveTone();
         foreach (GameObject obj in Selection.gameObjects)
         {
@@ -115,24 +123,36 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
                 ButtonAudio = obj.GetComponent<AudioSource>();
 
                 ButtonAudio.clip = Resources.Load<AudioClip>("Sounds/" + NameOfSample);
+
+                // Adds the AudioClip to the buttons OnClick()
                 UnityEventTools.AddPersistentListener(SelectedButton.onClick, ButtonAudio.Play);
             }
         }
 
     }
 
+
     // Created a new function called ToneGenerate()
     // This function creates an AudioClip called audioOutput
     // And returns the new generated tone in audioOutput
     private AudioClip ToneGenerate()
     {
-        // This counter is used for the inflection frequency loop
-        InflecCounter = 0;
+        // This counter is used for the vary frequency loop
+        VaryFrequencyCount = 0;
 
+        // Creates the AudioClip
+        // Create(Name, Sample Length, Number of channels, stream, pcmreadercallback, pcmsetpositioncallback)
         AudioOutput = AudioClip.Create(NameOfSample, (int)(SampleRate * SampleDur), 1, SampleRate, false, OnAudioRead, SetPosition);
         return AudioOutput;
     }
 
+
+    // Function used to save the tone as a .wav file
+    void SaveTone()
+    {
+        ToneGenerate();
+        SaveUtil.Save(NameOfSample, AudioOutput);
+    }
 
 
     // Is called within ToneGenerate() AudioClip.Create as the pcmreadercallback parameter
@@ -141,14 +161,15 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         int counter = 0;
         float CurrentFrequency = frequency;
 
-        InflecCounter++;
+        VaryFrequencyCount++;
 
         while (counter < samples.Length)
         {
             // If the inflec toggle is enabled, the frequency transitions from one value to another
-            if (inflec)
+            if (VaryFrequency)
             {
-                CurrentFrequency = Mathf.Lerp(frequency, EndingFrequency, (float)InflecCounter / (1 + 10 * SampleDur));
+                // Interpolates between the two values set in frequency and EndingFrequency
+                CurrentFrequency = Mathf.Lerp(frequency, EndingFrequency, (float)VaryFrequencyCount / (1 + 10 * SampleDur));
             }
 
             samples[counter] = Mathf.Sin(2 * Mathf.PI * CurrentFrequency * pos / SampleRate);
@@ -163,13 +184,6 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
     {
         pos = newPos;
     }
-
-    // Function used to save the tone as a .wav file
-    void SaveTone()
-    {
-        SaveUtil.Save(NameOfSample, AudioOutput);
-    }
-
 
 
 }
