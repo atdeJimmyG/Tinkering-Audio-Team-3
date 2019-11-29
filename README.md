@@ -42,9 +42,14 @@ of settings should be made available and configurable by a designer.**
 
 #### How to use the Editor Tool
 1. Select the button you wish to change the tone of
-2. Change any of the values provided
+2. Change any of the values provided within the Editor Tool
 3. Click the 'Generate Tone' button
-4. Run the scene and click the button
+4. Click the 'Save Generated Tone' button
+5. Go to folder 'Sounds' that will be located at Assets/Resources/Sounds
+6. Right click within this folder and refresh - the newly saved tone will load into this folder
+7. Select the button you wish to apply this tone to (if un-selected)
+8. In the Editor Tool, select the 'Apply Tone to GameObject' button
+9. Run the scene and click the button
 
 ### License Justification 
 We have chosen to use the GNU GPL-3.0 as we felt it was best for our needs. It was decidied that we wanted out code to be open source but we also wanted people that may use this code, to indicate that they have gathered it form another source; if used, the code must remain open source under the same GLP-3.0 License. We also made sure we used a licence that made us not liable for any errors or bugs inside the code. 
