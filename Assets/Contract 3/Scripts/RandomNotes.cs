@@ -83,27 +83,28 @@ public class RandomNotes : MonoBehaviour {
         }
         
     }
-        
-    //Removing "unused" function will cause no audio to be played
+
+    
     public void OnAudioFilterRead(float[] data, int channels) {
         gain = volume;
         increment = frequency * 2.0 * Mathf.PI / samplingFrequency;
         // Looping around the data array 
-        for(int i = 0; i < data.Length; i += channels) {
+        for (int i = 0; i < data.Length; i += channels) {
             phase += increment;
             data[i] = (float)(gain * Mathf.Sin((float)phase));
             // Plays in both speaker channels
-            if(channels == 2) {
+            if (channels == 2) {
                 data[i + 1] = data[i];
             }
-            if(phase > (Mathf.PI * 2)) {
+            if (phase > (Mathf.PI * 2)) {
                 phase = 0.0;
             }
         }
     }
 
     void GenerateClip() {
-        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency * SampleDuration), 2, (int)samplingFrequency, false, OnAudioRead, OnAudioSetPosition);
+        float randomNoteLen = Random.Range(0.2f, 0.5f); 
+        AudioClip = AudioClip.Create("tone", (int)(samplingFrequency *  randomNoteLen), 2, (int)samplingFrequency, false, OnAudioRead, OnAudioSetPosition);
     }
     void OnAudioRead(float[] data)
     {
