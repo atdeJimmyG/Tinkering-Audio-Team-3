@@ -53,7 +53,6 @@ public class EditorTool : EditorWindow //Changed Monobehavior to EditorWindow so
         // Sets all editable areas of the editor tool
         NameOfSample = (string)EditorGUILayout.TextField("Name of sample", NameOfSample);
         SampleDur = EditorGUILayout.FloatField("Duration", SampleDur);
-        SampleRate = (int)EditorGUILayout.Slider("Sample Rate", SampleRate, 100, 44100);
         frequency = (int)EditorGUILayout.Slider("Frequency", frequency, 1, 1000);
 
         // Inflec is a toggle boolean. When toggled, a slider will appear on the window
